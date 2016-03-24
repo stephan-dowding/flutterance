@@ -1,0 +1,3 @@
+class @NullFragment
+  expand: ->
+    ['']

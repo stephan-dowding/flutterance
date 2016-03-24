@@ -1,6 +1,3 @@
-chai = require('chai')
-expect = chai.expect
-
 flutterance = require('../flutterance')
 
 describe 'expander', ->
@@ -10,4 +7,3 @@ describe 'expander', ->
 
     it 'provides blank and a single option for each supplied text', ->
       expect(flutterance.choose(['hello', 'hi', 'hey'], 0, 1)).to.have.members([null, 'hello', 'hi', 'hey'])
-      
