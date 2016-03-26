@@ -1,14 +1,11 @@
 {LiteralFragment} = require '../fragments/literalFragment'
 
 exports.parse = (input) ->
-  index = nextSpecialCharIndex(input)
-  if index
-    fragment: new LiteralFragment input.substring(0, index)
-    remainder: input.substring(index)
-  else
-    fragment: new LiteralFragment input
-    remainder: ''
+  parseRecur(input, '')
 
-nextSpecialCharIndex = (string) ->
-  indices = ['[', '|', ']'].map((char) -> string.indexOf(char)).filter((index) -> index > -1)
-  Math.min(indices...)
+parseRecur = ([head,tail...], acc) ->
+  if (!head || head in ['[','|',']'])
+    fragment: new LiteralFragment acc
+    remainder: if head then (head.concat tail.join('')) else ''
+  else
+    parseRecur tail, acc.concat head
