@@ -1,26 +1,24 @@
 {TreeFragment} = require('../../fragments/treeFragment')
-{LiteralFragment} = require('../../fragments/literalFragment')
-{NullFragment} = require('../../fragments/nullFragment')
-{ChooseFragment} = require('../../fragments/chooseFragment')
+{StubFragment} = require('./fragment.stub')
 
 describe 'ChooseFragment', ->
   describe 'expand', ->
     it 'combines the literals', ->
-      fragment = new TreeFragment(new LiteralFragment('red '), new LiteralFragment('green'))
+      fragment = new TreeFragment(new StubFragment(['red ']), new StubFragment(['green']))
       expect(fragment.expand()).to.have.members(['red green'])
 
     it 'expands when there are many left items', ->
-      leftFragment = new ChooseFragment([new LiteralFragment('red'), new LiteralFragment('yellow')])
-      fragment = new TreeFragment(leftFragment, new LiteralFragment(' green'))
+      leftFragment = new StubFragment(['red', 'yellow'])
+      fragment = new TreeFragment(leftFragment, new StubFragment([' green']))
       expect(fragment.expand()).to.have.members(['red green', 'yellow green'])
 
     it 'expands when there are many right items', ->
-      rightFragment = new ChooseFragment([new LiteralFragment('blue'), new LiteralFragment('green')])
-      fragment = new TreeFragment(new LiteralFragment('red '), rightFragment)
+      rightFragment = new StubFragment(['blue', 'green'])
+      fragment = new TreeFragment(new StubFragment(['red ']), rightFragment)
       expect(fragment.expand()).to.have.members(['red blue', 'red green'])
 
     it 'expands when there are many left and right items', ->
-      leftFragment = new ChooseFragment([new LiteralFragment('kind'), new LiteralFragment('calm')])
-      rightFragment = new ChooseFragment([new LiteralFragment('er'), new LiteralFragment('ly')])
+      leftFragment = new StubFragment(['kind', 'calm'])
+      rightFragment = new StubFragment(['er', 'ly'])
       fragment = new TreeFragment(leftFragment, rightFragment)
       expect(fragment.expand()).to.have.members(['kindly', 'kinder', 'calmly', 'calmer'])

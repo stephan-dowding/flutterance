@@ -1,8 +1,8 @@
 {ChooseFragment} = require('../../fragments/chooseFragment')
-{LiteralFragment} = require('../../fragments/literalFragment')
+{StubFragment} = require('./fragment.stub')
 
 describe 'ChooseFragment', ->
   describe 'expand', ->
     it 'provides a list of each literal', ->
-      fragment = new ChooseFragment([new LiteralFragment('red'), new LiteralFragment('green'), new LiteralFragment('blue')])
+      fragment = new ChooseFragment([new StubFragment(['red']), new StubFragment(['green']), new StubFragment(['blue'])])
       expect(fragment.expand()).to.have.members(['red', 'green', 'blue'])
