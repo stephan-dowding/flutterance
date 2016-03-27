@@ -4,7 +4,7 @@ describe 'literalParser', ->
   it 'stops at the end of the string', ->
     {fragment: fragment, remainder: remainder} = literalParser.parse('Hello')
     expect(fragment.literal).to.equal('Hello')
-    expect(remainder).to.equal('')
+    expect(remainder).to.be.falsey
   it 'stops on [', ->
     {fragment: fragment, remainder: remainder} = literalParser.parse('Good [Morning|Afternoon]')
     expect(fragment.literal).to.equal('Good ')

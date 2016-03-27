@@ -1,11 +1,8 @@
 {LiteralFragment} = require '../fragments/literalFragment'
 
 exports.parse = (input) ->
-  parseRecur(input, '')
-
-parseRecur = ([head,tail...], acc) ->
-  if (!head || head in ['[','|',']'])
-    fragment: new LiteralFragment acc
-    remainder: if head then (head.concat tail.join('')) else ''
-  else
-    parseRecur tail, acc.concat head
+  return {
+    fragment: new LiteralFragment input.substring(0, i)
+    remainder: input.substring i
+  } for c, i in input when c in ['[','|',']']
+  fragment: new LiteralFragment input
