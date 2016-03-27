@@ -6,9 +6,11 @@ describe 'chooseParser', ->
   before ->
     mockery.enable()
     mockery.registerSubstitute('./treeParser', './literalParser')
+    mockery.registerAllowables ['../../parsers/chooseParser', '../fragments/chooseFragment']
     chooseParser = require '../../parsers/chooseParser'
 
   after ->
+    mockery.deregisterAllowables ['../../parsers/chooseParser', '../fragments/chooseFragment']
     mockery.deregisterSubstitute('./treeParser')
     mockery.disable()
 
