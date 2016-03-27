@@ -12,7 +12,7 @@ exports.parse = (input) ->
 getOptions = (input, acc) ->
   {fragment: fragment, remainder: remainder} = treeParser.parse input
 
-  if remainder && remainder[0] == '|'
+  if remainder[0] == '|'
     getOptions(remainder.substring(1), acc.concat(fragment))
   else
     options: acc.concat fragment
