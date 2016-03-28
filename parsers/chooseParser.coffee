@@ -1,7 +1,7 @@
 {ChooseFragment} = require('../fragments/chooseFragment')
 treeParser = require('./treeParser')
 
-exports.parse = (input) ->
+@parse = (input) ->
   throw new Error('unexpected input') unless input[0] == '['
   {options: options, remainder: remainder} = getOptions input.substring 1
   throw new Error('missing ] after [') unless remainder[0] == ']'

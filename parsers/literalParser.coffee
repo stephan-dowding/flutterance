@@ -1,6 +1,6 @@
 {LiteralFragment} = require '../fragments/literalFragment'
 
-exports.parse = (input) ->
+@parse = (input) ->
   return {
     fragment: new LiteralFragment input.substring(0, i)
     remainder: input.substring i
