@@ -1,9 +1,10 @@
 flutterance = require('../flutterance')
+{TreeFragment} = require('../fragments/treeFragment')
 
-describe 'expander', ->
-  describe 'choose', ->
-    it 'provides blank and filled options', ->
-      expect(flutterance.choose(['hello'], 0, 1)).to.have.members([null,'hello'])
+describe 'parse', ->
+  it 'throws if a remainder is returned', ->
+    expect(()->flutterance.parse('|hello')).to.throw(Error)
 
-    it 'provides blank and a single option for each supplied text', ->
-      expect(flutterance.choose(['hello', 'hi', 'hey'], 0, 1)).to.have.members([null, 'hello', 'hi', 'hey'])
+  it 'does not throw is no remainder is returned', ->
+    fragment = flutterance.parse('hello')
+    expect(fragment).to.be.an.instanceof(TreeFragment)
