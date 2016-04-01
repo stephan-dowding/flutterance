@@ -13,5 +13,8 @@
     "chai": "^3.5.0",
     "coffee-script": "^1.10.0",
     "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "line-by-line": "^0.1.4"
   }
 }

@@ -1,0 +1,2 @@
+Hello, this is test [line|text] 1
+Hello, this is test [line|text] 2
