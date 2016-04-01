@@ -3,10 +3,10 @@ chooseParser = require '../../parsers/chooseParser'
 describe 'chooseParser', ->
 
   it 'throws if input does not start with [', ->
-    expect(()->chooseParser.parse('hello')).to.throw Error
+    expect(()->chooseParser.parse('hello')).to.throw 'unexpected input'
 
   it 'throws if [ and ] are unmatched', ->
-    expect(()->chooseParser.parse('[hello')).to.throw Error
+    expect(()->chooseParser.parse('[hello')).to.throw 'missing ] after ['
 
   it 'creates a choose fragment with a single option', ->
     {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello]'
