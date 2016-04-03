@@ -28,3 +28,6 @@ fs = require('fs')
       Line #{line.number}: #{line.text}
       #{error}
       """)
+
+@expandAll = (fragments) ->
+  Array.from(new Set([].concat(fragment.expand() for fragment in fragments ...)))

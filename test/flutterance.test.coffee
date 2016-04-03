@@ -1,5 +1,6 @@
 flutterance = require('../flutterance')
 {TreeFragment} = require('../fragments/treeFragment')
+{StubFragment} = require('./fragments/fragment.stub')
 
 describe 'parse', ->
   it 'throws if a remainder is returned', ->
@@ -44,3 +45,14 @@ describe 'parseLines', ->
     expect(parsedLines.length).to.equal(2)
     expect(parsedLines[0]).to.be.an.instanceOf TreeFragment
     expect(parsedLines[1]).to.be.an.instanceOf TreeFragment
+
+describe 'expandAll', ->
+  it 'expands all the fragments into an array of sentences', ->
+    fragments = [new StubFragment(['Sentence 1','Sentence 2']), new StubFragment(['Sentence 3', 'Sentence 4'])]
+    expect(flutterance.expandAll(fragments)).to.have.members ['Sentence 1','Sentence 2', 'Sentence 3', 'Sentence 4']
+
+  it 'removes duplicates', ->
+    fragments = [new StubFragment(['Sentence 1','Sentence 2']), new StubFragment(['Sentence 2', 'Sentence 3'])]
+    sentences = flutterance.expandAll(fragments)
+    expect(sentences.length).to.equal(3)
+    expect(sentences).to.have.members ['Sentence 1','Sentence 2', 'Sentence 3']
