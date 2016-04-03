@@ -34,9 +34,9 @@ describe 'parseLines', ->
     lines = [{number: 1, text: "Good [Morning|Afternoon"}]
     expect(->flutterance.parseLines(lines)).to.throw("Line 1: Good [Morning|Afternoon")
 
-  xit 'throws original error on parse error', ->
+  it 'throws original error on parse error', ->
     lines = [{number: 1, text: "Good [Morning|Afternoon"}]
-    expect(->flutterance.parseLines(lines)).to.throw("Line 1: Good [Morning|Afternoon")
+    expect(->flutterance.parseLines(lines)).to.throw("Error: missing ] after [")
 
   it 'parse multiple lines correctly', ->
     lines = [{number: 1, text: "Good [Morning|Afternoon]"}, {number: 2, text: "How are you"}]
