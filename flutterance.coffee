@@ -1,6 +1,7 @@
 treeParser = require('./parsers/treeParser')
 LineByLineReader = require('line-by-line')
 fs = require('fs')
+os = require('os')
 
 @parse = (input) ->
   {fragment: fragment, remainder: remainder} = treeParser.parse(input)
@@ -23,7 +24,6 @@ fs = require('fs')
     try
       @parse(line.text)
     catch error
-      console.log error
       throw new Error("""
       Line #{line.number}: #{line.text}
       #{error}
@@ -31,3 +31,6 @@ fs = require('fs')
 
 @expandAll = (fragments) ->
   Array.from(new Set([].concat(fragment.expand() for fragment in fragments ...)))
+
+@writeToFile = (sentences, file) ->
+  fs.writeFileSync(file, sentences.join(os.EOL))
