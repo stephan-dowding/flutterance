@@ -1,3 +1,4 @@
+`#!/usr/bin/env node`
 flutterance = require('./flutterance')
 
 flutterance.readFromFile(process.argv[2])

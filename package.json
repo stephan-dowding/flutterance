@@ -1,13 +1,13 @@
 {
   "name": "flutterance",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "App to help define Alexa utterances more easily",
   "homepage": "https://github.com/stephan-dowding/flutterance",
   "main": "./js/flutterance.js",
   "bin": "./js/run.js",
   "scripts": {
     "test": "cd coffee && mocha",
-    "build": "rm -rf js && mkdir js && coffee -o js -bc coffee",
+    "build": "rm -rf js && mkdir js && coffee --no-header -o js -bc coffee",
     "coffee": "coffee"
   },
   "author": "Stephan Dowding",
