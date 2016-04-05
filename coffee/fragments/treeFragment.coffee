@@ -4,4 +4,4 @@ class @TreeFragment
   expand: ->
     leftItems = @left.expand()
     rightItems = @right.expand()
-    [].concat(leftItem + rightItem for rightItem in rightItems for leftItem in leftItems ...)
+    [].concat(leftItems.map((leftItem) -> rightItems.map((rightItem) -> leftItem + rightItem)) ...)
