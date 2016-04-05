@@ -6,10 +6,35 @@ A syntax to make [Alexa](https://developer.amazon.com/public/solutions/alexa/ale
 
 ## Getting started
 ```
-npm install
+npm install -g flutterance
 ```
 
-## run the tests
+## convert a file
 ```
-npm test
+flutterance input.txt output.txt
+```
+
+## syntax
+
+Use `[aaa|bbb]` to indicate choices of either or.
+```
+[aaa|bbb]
+```
+Will be expanded to
+```
+aaa
+bbb
+```
+
+These can be nested, thus:
+```
+[Hello|Hi|Good [Morning|Afternoon|Evening]] Alexa
+```
+Will get expanded to:
+```
+Hello Alexa
+Hi Alexa
+Good Morning Alexa
+Good Afternoon Alexa
+Good Evening Alexa
 ```

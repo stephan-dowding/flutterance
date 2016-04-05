@@ -2,12 +2,20 @@
   "name": "flutterance",
   "version": "0.0.1",
   "description": "App to help define Alexa utterances more easily",
-  "main": "flutterance.js",
+  "homepage": "https://github.com/stephan-dowding/flutterance",
+  "main": "./js/flutterance.js",
+  "bin": "./js/run.js",
   "scripts": {
-    "test": "mocha",
+    "test": "cd coffee && mocha",
+    "build": "rm -rf js && mkdir js && coffee -o js -bc coffee",
     "coffee": "coffee"
   },
   "author": "Stephan Dowding",
+  "contributors": ["Thao Dang", "Col Harris"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stephan-dowding/flutterance.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.5.0",
