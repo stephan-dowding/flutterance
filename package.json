@@ -8,7 +8,7 @@
   "scripts": {
     "test": "cd coffee && mocha",
     "build": "rm -rf js && mkdir js && coffee --no-header -o js -bc coffee",
-    "coffee": "coffee"
+    "coffee": "coffee",
     "run": "npm run build && node js/run.js"
   },
   "keywords": ["alexa", "amazon", "alexa voice services", "avs", "utterance", "utterances"],
