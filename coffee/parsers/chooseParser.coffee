@@ -8,7 +8,7 @@ treeParser = require('./treeParser')
 
   {min: min, remainder: remainder} = getMode remainder.substring 1
 
-  fragment: new ChooseFragment options, min
+  fragment: new ChooseFragment options, min, 1
   remainder: remainder
 
 getOptions = (input, acc=[]) ->
