@@ -28,13 +28,37 @@ describe 'chooseParser', ->
   it 'sets the min to 1', ->
     {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey] how are you'
     expect(fragment.min).to.equal 1
+    expect(fragment.max).to.equal 1
 
   describe '?', ->
     it 'sets the min to 0', ->
       {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]? how are you'
       expect(fragment.min).to.equal 0
+      expect(fragment.max).to.equal 1
 
     it 'returns the remainder', ->
       {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]? how are you'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'
+
+  describe '+', ->
+    it 'sets the max to choices.length', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]+ how are you'
+      expect(fragment.min).to.equal 1
+      expect(fragment.max).to.equal 3
+
+    it 'returns the remainder', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]+ how are you'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'
+
+  describe '*', ->
+    it 'sets the min to 0 and max to choices.length', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]* how are you'
+      expect(fragment.min).to.equal 0
+      expect(fragment.max).to.equal 3
+
+    it 'returns the remainder', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]* how are you'
       expect(fragment.choices.length).to.equal 3
       expect(remainder).to.equal ' how are you'

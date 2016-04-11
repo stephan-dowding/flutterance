@@ -6,9 +6,9 @@ treeParser = require('./treeParser')
   {options: options, remainder: remainder} = getOptions input.substring 1
   throw new Error('missing ] after [') unless remainder && remainder[0] == ']'
 
-  {min: min, remainder: remainder} = getMode remainder.substring 1
+  {min: min, max: max, remainder: remainder} = getMode options.length, remainder.substring 1
 
-  fragment: new ChooseFragment options, min, 1
+  fragment: new ChooseFragment options, min, max
   remainder: remainder
 
 getOptions = (input, acc=[]) ->
@@ -20,12 +20,27 @@ getOptions = (input, acc=[]) ->
     options: acc.concat fragment
     remainder: remainder
 
-getMode = (remainder) ->
-  return {
-    min: 0
-    remainder: remainder.substring 1
-  } if remainder[0] == '?'
+getMode = (maxLength, remainder) ->
+  if remainder[0] == '?'
+    return {
+      min: 0
+      max: 1
+      remainder: remainder.substring 1
+    }
+  if remainder[0] == '+'
+    return {
+      min: 1
+      max: maxLength
+      remainder: remainder.substring 1
+    }
+  if remainder[0] == '*'
+    return {
+      min: 0
+      max: maxLength
+      remainder: remainder.substring 1
+    }
   {
     min: 1
+    max: 1
     remainder: remainder
   }
