@@ -1,6 +1,6 @@
 {
   "name": "flutterance",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "App to help define Alexa utterances more easily",
   "homepage": "https://github.com/stephan-dowding/flutterance",
   "main": "./js/flutterance.js",
