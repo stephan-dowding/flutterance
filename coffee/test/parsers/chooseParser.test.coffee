@@ -24,3 +24,17 @@ describe 'chooseParser', ->
     {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey] how are you'
     expect(fragment.choices.length).to.equal 3
     expect(remainder).to.equal ' how are you'
+
+  it 'sets the min to 1', ->
+    {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey] how are you'
+    expect(fragment.min).to.equal 1
+
+  describe '?', ->
+    it 'sets the min to 0', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]? how are you'
+      expect(fragment.min).to.equal 0
+
+    it 'returns the remainder', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]? how are you'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'

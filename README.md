@@ -38,3 +38,14 @@ Good Morning Alexa
 Good Afternoon Alexa
 Good Evening Alexa
 ```
+
+It is also possible to make the words optional by suffixing with a `?`
+```
+This is[ really| very]? good
+```
+Will get expanded to:
+```
+This is good
+This is really good
+This is very good
+```
