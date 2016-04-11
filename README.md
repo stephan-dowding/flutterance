@@ -49,3 +49,27 @@ This is good
 This is really good
 This is very good
 ```
+
+To inlcude combinations of many words, use `+` or `*`.  These work regex style where they will give you one-or-more or zero-or-more words from the list. It will not, however, add any spaces or allow the words to appear out of order.
+```
+Hello[ John| Edward| Smith]+
+My[ big| yellow| metal]* box
+```
+Will expand to:
+```
+Hello John
+Hello Edward
+Hello Smith
+Hello Edward Smith
+Hello John Edward
+Hello John Smith
+Hello John Edward Smith
+My box
+My big box
+My yellow box
+My metal box
+My yellow metal box
+My big yellow box
+My big metal box
+My big yellow metal box
+```

@@ -12,5 +12,5 @@ describe 'ChooseFragment', ->
       expect(fragment.expand()).to.have.members(['red', 'green', 'blue', ''])
 
     it 'includes multi-word combinations when max > 1', ->
-      fragment = new ChooseFragment([new StubFragment(['red']), new StubFragment(['green']), new StubFragment(['blue'])], 1, 3)
-      expect(fragment.expand()).to.have.members(['red', 'green', 'blue', 'red green', 'red blue', 'green blue', 'red green blue'])
+      fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue'])], 1, 3)
+      expect(fragment.expand()).to.have.members([' red', ' green', ' blue', ' red green', ' red blue', ' green blue', ' red green blue'])
