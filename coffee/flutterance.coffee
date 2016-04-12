@@ -30,7 +30,10 @@ os = require('os')
       """)
 
 @expandAll = (fragments) ->
-  Array.from(new Set([].concat(fragment.expand() for fragment in fragments ...)))
+  Array.from(new Set([].concat(fragment.expand() for fragment in fragments ...).map(normalise)))
 
 @writeToFile = (sentences, file) ->
   fs.writeFileSync(file, sentences.join(os.EOL))
+
+normalise = (s) ->
+  s.trim().replace(/\s+/g, ' ')

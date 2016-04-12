@@ -60,6 +60,18 @@ describe 'flutterance', ->
       expect(sentences.length).to.equal(3)
       expect(sentences).to.have.members ['Sentence 1','Sentence 2', 'Sentence 3']
 
+    it 'normalises spaces', ->
+      fragments = [new StubFragment(['Sentence 1','Sentence  2']), new StubFragment(['Sentence   3', 'Sentence    4'])]
+      sentences = flutterance.expandAll(fragments)
+      expect(sentences.length).to.equal(4)
+      expect(sentences).to.have.members ['Sentence 1','Sentence 2', 'Sentence 3', 'Sentence 4']
+
+    it 'trims sentences', ->
+      fragments = [new StubFragment(['Sentence 1',' Sentence 2']), new StubFragment(['Sentence 3 ', ' Sentence 4 '])]
+      sentences = flutterance.expandAll(fragments)
+      expect(sentences.length).to.equal(4)
+      expect(sentences).to.have.members ['Sentence 1','Sentence 2', 'Sentence 3', 'Sentence 4']
+
   describe 'writeToFile', ->
     testFile = 'test/data/utterances.txt'
     it 'writes each sentence as a line in the file', ->
