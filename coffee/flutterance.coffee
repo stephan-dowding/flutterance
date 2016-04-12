@@ -26,7 +26,7 @@ os = require('os')
     catch error
       throw new Error("""
       Line #{line.number}: #{line.text}
-      #{error}
+        #{error}
       """)
 
 @expandAll = (fragments) ->
