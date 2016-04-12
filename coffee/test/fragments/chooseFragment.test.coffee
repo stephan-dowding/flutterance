@@ -14,3 +14,7 @@ describe 'ChooseFragment', ->
     it 'includes multi-word combinations when max > 1', ->
       fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue'])], 1, 3)
       expect(fragment.expand()).to.have.members([' red', ' green', ' blue', ' red green', ' red blue', ' green blue', ' red green blue'])
+
+    it 'includes all orderings when mode is unordered', ->
+      fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue'])], 3, 3, "unordered")
+      expect(fragment.expand()).to.have.members([' red green blue', ' red blue green', ' green red blue', ' green blue red', ' blue red green', ' blue green red'])
