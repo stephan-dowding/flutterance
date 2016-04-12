@@ -1,4 +1,5 @@
-`#!/usr/bin/env node`
+`#!/usr/bin/env node
+`
 flutterance = require('./flutterance')
 
 unless process.argv[2] && process.argv[3]
