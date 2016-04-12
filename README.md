@@ -41,13 +41,16 @@ Good Evening Alexa
 
 It is also possible to make the words optional by suffixing with a `?`
 ```
-This is[ really| very]? good
+[Wow]? This is [really|very]? good
 ```
 Will get expanded to:
 ```
 This is good
 This is really good
 This is very good
+Wow This is good
+Wow This is really good
+Wow This is very good
 ```
 
 To inlcude combinations of many words, use `+` or `*`.  These work regex style where they will give you one-or-more or zero-or-more words from the list. It will not, however, add any spaces or allow the words to appear out of order.
