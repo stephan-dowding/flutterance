@@ -73,3 +73,27 @@ My big yellow box
 My big metal box
 My big yellow metal box
 ```
+
+If the words can be applied in any order, you can use the `~` operator in combination with `*` or `+` and flutterance will produce all sentences with any order of the options. (Technically you could combine `~` with `?` or just on it's own, but it won't make much difference!!)
+```
+My[ big| yellow| metal]~* box
+```
+Will expand to:
+```
+My box
+My big box
+My yellow box
+My metal box
+My big yellow box
+My big metal box
+My yellow big box
+My yellow metal box
+My metal big box
+My metal yellow box
+My big yellow metal box
+My big metal yellow box
+My yellow big metal box
+My yellow metal big box
+My metal big yellow box
+My metal yellow big box
+```
