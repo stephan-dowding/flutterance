@@ -28,3 +28,11 @@ describe 'ChooseFragment', ->
       magenta = new StubFragment([' magenta'])
       fragment = new ChooseFragment([red, green, blue, yellow, cyan, magenta], 3, 3, "unordered")
       expect(fragment.expand().length).to.equal(120)
+
+    it 'expands from left', ->
+      fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue']), new StubFragment([' yellow'])], 0, 4, "left")
+      expect(fragment.expand()).to.have.members(['', ' red', ' red green', ' red green blue', ' red green blue yellow'])
+
+    it 'expands from right', ->
+      fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue']), new StubFragment([' yellow'])], 0, 4, "right")
+      expect(fragment.expand()).to.have.members(['', ' yellow', ' blue yellow', ' green blue yellow', ' red green blue yellow'])
