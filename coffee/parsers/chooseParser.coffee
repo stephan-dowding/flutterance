@@ -39,5 +39,11 @@ getModeR = (maxLength, remainder, meta) ->
   if remainder[0] == '~'
     meta.mode = 'unordered'
     return getModeR maxLength, remainder.substring(1), meta
+  if remainder[0] == '>'
+    meta.mode = 'left'
+    return getModeR maxLength, remainder.substring(1), meta
+  if remainder[0] == '<'
+    meta.mode = 'right'
+    return getModeR maxLength, remainder.substring(1), meta
   meta.remainder = remainder
   meta

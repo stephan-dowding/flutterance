@@ -86,3 +86,43 @@ describe 'chooseParser', ->
       expect(fragment.mode).to.equal 'unordered'
       expect(fragment.choices.length).to.equal 3
       expect(remainder).to.equal ' how are you'
+
+  describe '>', ->
+    it 'sets the mode to unordered', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]> how are you'
+      expect(fragment.min).to.equal 1
+      expect(fragment.max).to.equal 1
+      expect(fragment.mode).to.equal 'left'
+
+    it 'returns the remainder', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]> how are you'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'
+
+    it 'can combine with *', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]>* how are you'
+      expect(fragment.min).to.equal 0
+      expect(fragment.max).to.equal 3
+      expect(fragment.mode).to.equal 'left'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'
+
+  describe '<', ->
+    it 'sets the mode to unordered', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]< how are you'
+      expect(fragment.min).to.equal 1
+      expect(fragment.max).to.equal 1
+      expect(fragment.mode).to.equal 'right'
+
+    it 'returns the remainder', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]< how are you'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'
+
+    it 'can combine with *', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]<* how are you'
+      expect(fragment.min).to.equal 0
+      expect(fragment.max).to.equal 3
+      expect(fragment.mode).to.equal 'right'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'
