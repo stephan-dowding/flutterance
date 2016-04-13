@@ -3,6 +3,7 @@
   "version": "0.0.9",
   "description": "App to help define Alexa utterances more easily",
   "homepage": "https://github.com/stephan-dowding/flutterance",
+  "preferGlobal": true,
   "main": "./js/flutterance.js",
   "bin": "./js/run.js",
   "scripts": {
