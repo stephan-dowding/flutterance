@@ -18,3 +18,13 @@ describe 'ChooseFragment', ->
     it 'includes all orderings when mode is unordered', ->
       fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue'])], 3, 3, "unordered")
       expect(fragment.expand()).to.have.members([' red green blue', ' red blue green', ' green red blue', ' green blue red', ' blue red green', ' blue green red'])
+
+    it 'includes all orderings when mode is unordered for more than 3 items', ->
+      red = new StubFragment([' red'])
+      green = new StubFragment([' green'])
+      blue = new StubFragment([' blue'])
+      yellow = new StubFragment([' yellow'])
+      cyan = new StubFragment(['cyan'])
+      magenta = new StubFragment([' magenta'])
+      fragment = new ChooseFragment([red, green, blue, yellow, cyan, magenta], 3, 3, "unordered")
+      expect(fragment.expand().length).to.equal(120)
