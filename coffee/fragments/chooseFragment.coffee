@@ -7,10 +7,10 @@ class @ChooseFragment
   expandX: (n, choices) ->
     return [] if n > choices.length
     return [''] if n == 0
-    return @expandX(n-1, choices[1..]).map((end) -> choices[0].expand().map((start) -> "#{start}#{end}")) if @mode == 'left'
-    return @expandX(n-1, choices[0...-1]).map((start) -> choices[choices.length - 1].expand().map((end) -> "#{start}#{end}")) if @mode == 'right'
-    return choices.map((choice) -> choice.expand()) if n == 1
-    return @expandX(n, choices[1..]).concat(@expandX(n-1, choices[1..]).map((end) -> choices[0].expand().map((start) -> "#{start}#{end}"))) unless @mode == 'unordered'
+    return flatten(@expandX(n-1, choices[1..]).map((end) -> choices[0].expand().map((start) -> "#{start}#{end}"))) if @mode == 'left'
+    return flatten(@expandX(n-1, choices[0...-1]).map((start) -> choices[choices.length - 1].expand().map((end) -> "#{start}#{end}"))) if @mode == 'right'
+    return flatten(choices.map((choice) -> choice.expand())) if n == 1
+    return flatten(@expandX(n, choices[1..]).concat(@expandX(n-1, choices[1..]).map((end) -> choices[0].expand().map((start) -> "#{start}#{end}")))) unless @mode == 'unordered'
     flatten(choices.map((startElem, i) => @expandX(n-1, rem(choices, i)).map((end) -> startElem.expand().map((start) -> "#{start}#{end}"))))
 
   rem = (arr, i) ->

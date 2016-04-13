@@ -100,3 +100,20 @@ My yellow metal big box
 My metal big yellow box
 My metal yellow big box
 ```
+
+If you need the words to expand from the left or right, you can use the `>` and `<` in combination with `*` or `+` to accomplish this.
+```
+I have a [really |very |nice]<* house
+I want [some| hot |pepperoni]>* pizzas
+```
+expands to:
+```
+I have a house
+I have a nice house
+I have a very nice house
+I have a really very nice house
+I want pizzas
+I want some pizzas
+I want some hot pizzas
+I want some hot pepperoni pizzas
+```
