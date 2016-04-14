@@ -45,5 +45,11 @@ getModeR = (maxLength, remainder, meta) ->
   if remainder[0] == '<'
     meta.mode = 'right'
     return getModeR maxLength, remainder.substring(1), meta
+  if remainder[0] == '('
+    [fullmatch, number, ...] =  remainder.match /^\((\d+)\)/
+    num = parseInt(number)
+    meta.min = num
+    meta.max = num
+    return getModeR maxLength, remainder.substring(fullmatch.length), meta
   meta.remainder = remainder
   meta

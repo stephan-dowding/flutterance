@@ -67,6 +67,18 @@ describe 'chooseParser', ->
       expect(fragment.choices.length).to.equal 3
       expect(remainder).to.equal ' how are you'
 
+  describe '(n)', ->
+    it 'sets the min and max to n', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey](2) how are you'
+      expect(fragment.min).to.equal 2
+      expect(fragment.max).to.equal 2
+      expect(fragment.mode).to.equal 'ordered'
+
+    it 'returns the remainder', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey](2) how are you'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'
+
   describe '~', ->
     it 'sets the mode to unordered', ->
       {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]~ how are you'

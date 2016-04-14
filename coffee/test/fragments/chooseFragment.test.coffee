@@ -44,3 +44,20 @@ describe 'ChooseFragment', ->
     it 'can be nested, > and <', ->
       fragment = new ChooseFragment([new StubFragment([' red']), new ChooseFragment([new StubFragment([' green']), new StubFragment([' blue'])], 0, 2, "right"), new StubFragment([' yellow'])], 1, 3, "left")
       expect(fragment.expand()).to.have.members([' red', ' red blue', ' red green blue', ' red yellow', ' red blue yellow', ' red green blue yellow'])
+
+    describe 'returns empty array if min length is too long', ->
+      it 'ordered', ->
+        fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue'])], 6, 6, 'ordered')
+        expect(fragment.expand().length).to.equal(0)
+
+      it 'unordered', ->
+        fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue'])], 6, 6, 'unordered')
+        expect(fragment.expand().length).to.equal(0)
+
+      it 'left', ->
+        fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue'])], 6, 6, 'left')
+        expect(fragment.expand().length).to.equal(0)
+
+      it 'right', ->
+        fragment = new ChooseFragment([new StubFragment([' red']), new StubFragment([' green']), new StubFragment([' blue'])], 6, 6, 'right')
+        expect(fragment.expand().length).to.equal(0)
