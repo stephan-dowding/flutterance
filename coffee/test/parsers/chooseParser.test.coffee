@@ -79,6 +79,9 @@ describe 'chooseParser', ->
       expect(fragment.choices.length).to.equal 3
       expect(remainder).to.equal ' how are you'
 
+    it 'throws a meaningful error if it can\'t parse the input', ->
+      expect(() -> chooseParser.parse '[hello|hi|hey](two) how are you').to.throw('invalid format after \'(\'... it should be (n) where n is an integer')
+
   describe '~', ->
     it 'sets the mode to unordered', ->
       {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey]~ how are you'

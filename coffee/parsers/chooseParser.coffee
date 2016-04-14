@@ -46,7 +46,9 @@ getModeR = (maxLength, remainder, meta) ->
     meta.mode = 'right'
     return getModeR maxLength, remainder.substring(1), meta
   if remainder[0] == '('
-    [fullmatch, number, ...] =  remainder.match /^\((\d+)\)/
+    match = remainder.match /^\((\d+)\)/
+    throw new Error('invalid format after \'(\'... it should be (n) where n is an integer') unless match
+    [fullmatch, number, ...] = remainder.match /^\((\d+)\)/
     num = parseInt(number)
     meta.min = num
     meta.max = num
