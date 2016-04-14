@@ -74,13 +74,46 @@ describe 'chooseParser', ->
       expect(fragment.max).to.equal 2
       expect(fragment.mode).to.equal 'ordered'
 
-    it 'returns the remainder', ->
+    it 'sets the min and max to maxLength for *', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey](*) how are you'
+      expect(fragment.min).to.equal 3
+      expect(fragment.max).to.equal 3
+      expect(fragment.mode).to.equal 'ordered'
+
+    it 'returns the remainder for (n)', ->
       {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey](2) how are you'
       expect(fragment.choices.length).to.equal 3
       expect(remainder).to.equal ' how are you'
 
     it 'throws a meaningful error if it can\'t parse the input', ->
-      expect(() -> chooseParser.parse '[hello|hi|hey](two) how are you').to.throw('invalid format after \'(\'... it should be (n) where n is an integer')
+      expect(() -> chooseParser.parse '[hello|hi|hey](two) how are you').to.throw('''
+      invalid format after '('...
+      it should be (n) or (n,m) where n and m are an integer or *
+      ''')
+
+  describe '(n,m)', ->
+    it 'sets the min and max to n and m', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey|yo|wassup](2, 4) how are you'
+      expect(fragment.min).to.equal 2
+      expect(fragment.max).to.equal 4
+      expect(fragment.mode).to.equal 'ordered'
+
+    it 'sets the min and max to maxLength for *', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey|yo|wassup](2,*) how are you'
+      expect(fragment.min).to.equal 2
+      expect(fragment.max).to.equal 5
+      expect(fragment.mode).to.equal 'ordered'
+
+    it 'returns the remainder for (n,m)', ->
+      {fragment: fragment, remainder: remainder} = chooseParser.parse '[hello|hi|hey](2,*) how are you'
+      expect(fragment.choices.length).to.equal 3
+      expect(remainder).to.equal ' how are you'
+
+    it 'throws a meaningful error if it can\'t parse the input', ->
+      expect(() -> chooseParser.parse '[hello|hi|hey](1,two) how are you').to.throw('''
+      invalid format after '('...
+      it should be (n) or (n,m) where n and m are an integer or *
+      ''')
 
   describe '~', ->
     it 'sets the mode to unordered', ->
