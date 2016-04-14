@@ -11,9 +11,9 @@ class @ChooseFragment
     return flatten(@expandX(n-1, choices[0...-1]).map((start) -> choices[choices.length - 1].expand().map((end) -> "#{start}#{end}"))) if @mode == 'right'
     return flatten(choices.map((choice) -> choice.expand())) if n == 1
     return flatten(@expandX(n, choices[1..]).concat(@expandX(n-1, choices[1..]).map((end) -> choices[0].expand().map((start) -> "#{start}#{end}")))) unless @mode == 'unordered'
-    flatten(choices.map((startElem, i) => @expandX(n-1, rem(choices, i)).map((end) -> startElem.expand().map((start) -> "#{start}#{end}"))))
+    flatten(choices.map((startElem, i) => @expandX(n-1, remove(choices, i)).map((end) -> startElem.expand().map((start) -> "#{start}#{end}"))))
 
-  rem = (arr, i) ->
+  remove = (arr, i) ->
     temp = arr.slice(0)
     temp.splice(i, 1)
     temp

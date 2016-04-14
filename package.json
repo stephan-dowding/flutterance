@@ -10,7 +10,7 @@
     "test": "cd coffee && mocha",
     "build": "rm -rf js && mkdir js && coffee --no-header -o js -bc coffee",
     "coffee": "coffee",
-    "run": "npm run build && node js/run.js"
+    "blink": "npm run build && npm link"
   },
   "keywords": ["alexa", "amazon", "alexa voice services", "avs", "utterance", "utterances"],
   "author": "Stephan Dowding",
