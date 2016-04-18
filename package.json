@@ -7,10 +7,7 @@
   "main": "./js/flutterance.js",
   "bin": "./js/run.js",
   "scripts": {
-    "test": "cd coffee && mocha",
-    "build": "rm -rf js && mkdir js && coffee --no-header -o js -bc coffee",
-    "coffee": "coffee",
-    "blink": "npm run build && npm link"
+    "test": "cd js && mocha",
   },
   "keywords": ["alexa", "amazon", "alexa voice services", "avs", "utterance", "utterances"],
   "author": "Stephan Dowding",
@@ -22,7 +19,6 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.5.0",
-    "coffee-script": "^1.10.0",
     "mocha": "^2.4.5"
   },
   "dependencies": {
