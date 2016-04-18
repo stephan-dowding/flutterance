@@ -7,7 +7,7 @@
   "main": "./js/flutterance.js",
   "bin": "./js/run.js",
   "scripts": {
-    "test": "cd js && mocha",
+    "test": "cd js && mocha"
   },
   "keywords": ["alexa", "amazon", "alexa voice services", "avs", "utterance", "utterances"],
   "author": "Stephan Dowding",
