@@ -8,11 +8,7 @@ this.TreeFragment = (function() {
     var leftItems, ref, rightItems;
     leftItems = this.left.expand();
     rightItems = this.right.expand();
-    return (ref = []).concat.apply(ref, leftItems.map(function(leftItem) {
-      return rightItems.map(function(rightItem) {
-        return leftItem + rightItem;
-      });
-    }));
+    return [].concat(...leftItems.map(leftItem => rightItems.map(rightItem => leftItem + rightItem)));
   };
 
   return TreeFragment;
