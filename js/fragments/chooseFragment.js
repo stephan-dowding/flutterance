@@ -1,24 +1,19 @@
 this.ChooseFragment = (function() {
   var flatten, remove;
 
-  function ChooseFragment(choices1, min, max, mode) {
-    this.choices = choices1;
-    this.min = min;
-    this.max = max;
+  function ChooseFragment(choices, min, max, mode) {
+    this.choices = choices;
+    this.min = min <= max ? min : max;
+    this.max = min <= max ? max : min;
     this.mode = mode;
   }
 
   ChooseFragment.prototype.expand = function() {
-    var j, ref, ref1, results;
-    return flatten((function() {
-      results = [];
-      for (var j = ref = this.min, ref1 = this.max; ref <= ref1 ? j <= ref1 : j >= ref1; ref <= ref1 ? j++ : j--){ results.push(j); }
-      return results;
-    }).apply(this).map((function(_this) {
-      return function(n) {
-        return _this.expandX(n, _this.choices);
-      };
-    })(this)));
+    var results = [];
+    for (var j = this.min; j <= this.max; j++){
+      results = results.concat(this.expandX(j,this.choices));
+    }
+    return results;
   };
 
   ChooseFragment.prototype.expandX = function(n, choices) {
