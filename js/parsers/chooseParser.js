@@ -1,8 +1,5 @@
-var ChooseFragment, getMode, getModeR, getOptions, parseNumber, treeParser;
-
-ChooseFragment = require('../fragments/chooseFragment').ChooseFragment;
-
-treeParser = require('./treeParser');
+var ChooseFragment = require('../fragments/chooseFragment').ChooseFragment;
+var treeParser = require('./treeParser');
 
 this.parse = function(input) {
   var max, min, mode, options, ref, ref1, remainder;
@@ -20,7 +17,7 @@ this.parse = function(input) {
   };
 };
 
-getOptions = function(input, acc) {
+function getOptions(input, acc) {
   var fragment, ref, remainder;
   if (acc == null) {
     acc = [];
@@ -36,7 +33,7 @@ getOptions = function(input, acc) {
   }
 };
 
-getMode = function(maxLength, remainder) {
+function getMode(maxLength, remainder) {
   return getModeR(maxLength, remainder, {
     min: 1,
     max: 1,
@@ -44,7 +41,7 @@ getMode = function(maxLength, remainder) {
   });
 };
 
-getModeR = function(maxLength, remainder, meta) {
+function getModeR(maxLength, remainder, meta) {
   var fullmatch, match, max, min;
   if (remainder[0] === '?') {
     meta.min = 0;
@@ -90,10 +87,6 @@ getModeR = function(maxLength, remainder, meta) {
   return meta;
 };
 
-parseNumber = function(input, wild) {
-  if (input === '*') {
-    return wild;
-  } else {
-    return parseInt(input);
-  }
+function parseNumber(input, wild) {
+  return input === '*' ? wild : parseInt(input);
 };

@@ -1,5 +1,4 @@
 this.ChooseFragment = (function() {
-  var flatten, remove;
 
   function ChooseFragment(choices, min, max, mode) {
     this.choices = choices;
@@ -55,13 +54,13 @@ this.ChooseFragment = (function() {
     return flatten(result);
   };
 
-  remove = function(arr, i) {
+  function remove(arr, i) {
     var temp = arr.slice(0);
     temp.splice(i, 1);
     return temp;
   };
 
-  flatten = function(arr) {
+  function flatten(arr) {
     return arr.reduce((flat, toFlatten) => flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten), []);
   };
 

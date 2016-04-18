@@ -1,6 +1,4 @@
-var LiteralFragment;
-
-LiteralFragment = require('../fragments/literalFragment').LiteralFragment;
+var LiteralFragment = require('../fragments/literalFragment').LiteralFragment;
 
 this.parse = function(input) {
   for (var i = 0; i < input.length; ++i) {
