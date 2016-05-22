@@ -1,12 +1,7 @@
-var LineByLineReader, fs, normalise, os, treeParser;
-
-treeParser = require('./parsers/treeParser');
-
-LineByLineReader = require('line-by-line');
-
-fs = require('fs');
-
-os = require('os');
+var treeParser = require('./parsers/treeParser');
+var LineByLineReader = require('line-by-line');
+var fs = require('fs');
+var os = require('os');
 
 this.parse = function(input) {
   var fragment, ref, remainder;
@@ -72,6 +67,6 @@ this.writeToFile = function(sentences, file) {
   return fs.writeFileSync(file, sentences.join(os.EOL));
 };
 
-normalise = function(s) {
+var normalise = function(s) {
   return s.trim().replace(/\s+/g, ' ');
 };
