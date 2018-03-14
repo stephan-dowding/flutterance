@@ -11,7 +11,9 @@ npm install -g flutterance
 
 ## convert a file
 ```
-flutterance input.txt output.txt
+const flutterance = require("flutterance");
+
+flutterance.processPhrases(input.txt, output.txt);
 ```
 
 ## syntax
